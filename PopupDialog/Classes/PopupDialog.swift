@@ -232,8 +232,10 @@ final public class PopupDialog: UIViewController {
                 stackView.removeArrangedSubview(popupContainerView.buttonStackView)
             }
             
-            for (index, button) in buttons.enumerated() {
-                button.needsLeftSeparator = buttonStackView.axis == .horizontal && index > 0
+            for (_, button) in buttons.enumerated() {
+                button.needsLeftSeparator = false
+                button.needsSeparator = false
+                
                 buttonStackView.addArrangedSubview(button)
                 button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
             }
@@ -244,8 +246,10 @@ final public class PopupDialog: UIViewController {
                 stackView.removeArrangedSubview(popupContainerView.buttonStackView)
             }
             
-            for (index, button) in buttons.enumerated() {
-                button.needsLeftSeparator = buttonStackView.axis == .horizontal && index > 0
+            for (_, button) in buttons.enumerated() {
+                button.needsLeftSeparator = false
+                button.needsSeparator = false
+                
                 buttonStackView.addArrangedSubview(button)
                 button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
             }

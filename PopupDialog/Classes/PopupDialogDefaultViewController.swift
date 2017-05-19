@@ -49,6 +49,7 @@ public extension PopupDialogDefaultViewController {
         set {
             standardView.imageView.image = newValue
             standardView.imageHeightConstraint?.constant = standardView.imageView.pv_heightForImageView()
+            standardView.resetConstraints()
         }
     }
 
@@ -58,6 +59,7 @@ public extension PopupDialogDefaultViewController {
         set {
             standardView.titleLabel.text = newValue
             standardView.pv_layoutIfNeededAnimated()
+            standardView.resetConstraints()
         }
     }
 
@@ -67,6 +69,7 @@ public extension PopupDialogDefaultViewController {
         set {
             standardView.messageLabel.text = newValue
             standardView.pv_layoutIfNeededAnimated()
+            standardView.resetConstraints()
         }
     }
 

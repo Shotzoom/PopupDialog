@@ -98,13 +98,13 @@ final public class PopupDialogContainerView: UIView {
             let buttonStackView = UIStackView()
             buttonStackView.translatesAutoresizingMaskIntoConstraints = false
             buttonStackView.distribution = .fillEqually
-            buttonStackView.spacing = 0
+            buttonStackView.spacing = 15
             return buttonStackView
         } else {
             let buttonStackView = TZStackView()
             buttonStackView.translatesAutoresizingMaskIntoConstraints = false
             buttonStackView.distribution = .fillEqually
-            buttonStackView.spacing = 0
+            buttonStackView.spacing = 15
             return buttonStackView
         }
     }()
@@ -166,8 +166,8 @@ final public class PopupDialogContainerView: UIView {
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[container]|", options: [], metrics: nil, views: views)
 
         // Main stack view constraints
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(==15@900)-[stackView]-(==15@900)-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(==30@900)-[stackView]-(==30@900)-|", options: [], metrics: nil, views: views)
 
         // Activate constraints
         NSLayoutConstraint.activate(constraints)

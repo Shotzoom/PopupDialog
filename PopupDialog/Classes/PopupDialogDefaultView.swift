@@ -85,7 +85,7 @@ final public class PopupDialogDefaultView: UIView {
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor(white: 0.4, alpha: 1)
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         return titleLabel
     }()
 
@@ -96,12 +96,15 @@ final public class PopupDialogDefaultView: UIView {
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
         messageLabel.textColor = UIColor(white: 0.6, alpha: 1)
-        messageLabel.font = UIFont.systemFont(ofSize: 14)
+        messageLabel.font = UIFont.systemFont(ofSize: 18)
         return messageLabel
     }()
     
     /// The height constraint of the image view, 0 by default
     internal var imageHeightConstraint: NSLayoutConstraint?
+    
+    /// The constraints of the view
+    internal var dialogConstraints: [NSLayoutConstraint]?
 
     // MARK: - Initializers
 
@@ -125,21 +128,41 @@ final public class PopupDialogDefaultView: UIView {
         addSubview(imageView)
         addSubview(titleLabel)
         addSubview(messageLabel)
-
+        
+        resetConstraints()
+    }
+    
+    internal func resetConstraints() {
+        if dialogConstraints != nil {
+            NSLayoutConstraint.deactivate(dialogConstraints!)
+        }
+        
+        // Add views
+        addSubview(imageView)
+        addSubview(titleLabel)
+        addSubview(messageLabel)
+        
         // Layout views
         let views = ["imageView": imageView, "titleLabel": titleLabel, "messageLabel": messageLabel] as [String : Any]
         var constraints = [NSLayoutConstraint]()
-
+        
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[imageView]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(==20@900)-[titleLabel]-(==20@900)-|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(==20@900)-[messageLabel]-(==20@900)-|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]-(==30@900)-[titleLabel]-(==8@900)-[messageLabel]-(==30@900)-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[titleLabel]|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[messageLabel]|", options: [], metrics: nil, views: views)
+        
+        if imageView.image != nil {
+            constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]-(==30@900)-[titleLabel]-(==15@900)-[messageLabel]-(==15@900)-|", options: [], metrics: nil, views: views)
+        } else {
+            constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[titleLabel]-(==15@900)-[messageLabel]-(==15@900)-|", options: [], metrics: nil, views: views)
+            
+        }
         
         // ImageView height constraint
         imageHeightConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: imageView, attribute: .height, multiplier: 0, constant: 0)
         constraints.append(imageHeightConstraint!)
-
+        
         // Activate constraints
         NSLayoutConstraint.activate(constraints)
+        dialogConstraints = constraints
     }
 }

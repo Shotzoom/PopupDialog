@@ -31,11 +31,22 @@ import UIKit
 /// Represents the default button for the popup dialog
 public final class DefaultButton: PopupDialogButton {}
 
+// MARK: Confirm button
+
+/// Represents a cancel button for the popup dialog
+public final class ConfirmButton: PopupDialogButton {
+    
+    override public func setupView() {
+        defaultTitleColor = UIColor.lightGray
+        super.setupView()
+    }
+}
+
 // MARK: Cancel button
 
 /// Represents a cancel button for the popup dialog
 public final class CancelButton: PopupDialogButton {
-
+    
     override public func setupView() {
         defaultTitleColor = UIColor.lightGray
         super.setupView()
