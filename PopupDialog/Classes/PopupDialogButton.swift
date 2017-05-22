@@ -64,9 +64,9 @@ open class PopupDialogButton: UIButton {
     }
 
     /// Default appearance of the button
-    open var defaultTitleFont      = UIFont.systemFont(ofSize: 18)
+    open var defaultTitleFont      = UIFont.systemFont(ofSize: 14)
     open var defaultTitleColor     = UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1)
-    open var defaultButtonColor    = UIColor(white: 0, alpha: 1)
+    open var defaultButtonColor    = UIColor.clear
     open var defaultSeparatorColor = UIColor(white: 0.9, alpha: 1)
 
     /// Whether button should dismiss popup when tapped

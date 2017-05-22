@@ -84,6 +84,7 @@ final public class PopupDialog: UIViewController {
                 title: String?,
                 message: String?,
                 image: UIImage? = nil,
+                imageHeightStyle: PopupDialogImageHeightStyle = .scale,
                 buttonAlignment: UILayoutConstraintAxis = .vertical,
                 transitionStyle: PopupDialogTransitionStyle = .bounceUp,
                 gestureDismissal: Bool = true,
@@ -91,9 +92,10 @@ final public class PopupDialog: UIViewController {
 
         // Create and configure the standard popup dialog view
         let viewController = PopupDialogDefaultViewController()
-        viewController.titleText   = title
-        viewController.messageText = message
-        viewController.image       = image
+        viewController.titleText        = title
+        viewController.messageText      = message
+        viewController.image            = image
+        viewController.imageHeightStyle = imageHeightStyle
 
         // Call designated initializer
         self.init(viewController: viewController, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle, gestureDismissal: gestureDismissal, completion: completion)

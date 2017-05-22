@@ -25,11 +25,24 @@
 
 import UIKit
 
+/*!
+ Height styles for the image displayed in the PopupDialog
+ 
+ - Scale:   Image height is scaled with respect to the width
+ - Fixed:   Image height matches the image provided
+ */
+@objc public enum PopupDialogImageHeightStyle: Int {
+    case scale
+    case fixed
+}
+
 final public class PopupDialogDefaultViewController: UIViewController {
 
     public var standardView: PopupDialogDefaultView {
        return view as! PopupDialogDefaultView
     }
+    
+    internal var dialogImageHeightStyle: PopupDialogImageHeightStyle?
 
     override public func loadView() {
         super.loadView()
@@ -48,7 +61,17 @@ public extension PopupDialogDefaultViewController {
         get { return standardView.imageView.image }
         set {
             standardView.imageView.image = newValue
-            standardView.imageHeightConstraint?.constant = standardView.imageView.pv_heightForImageView()
+            standardView.imageHeightConstraint?.constant = standardView.imageView.pv_heightForImageView(style: dialogImageHeightStyle)
+            standardView.resetConstraints()
+        }
+    }
+    
+    /// The style for the image height calculations
+    public var imageHeightStyle: PopupDialogImageHeightStyle {
+        get { return dialogImageHeightStyle! }
+        set {
+            dialogImageHeightStyle = newValue
+            standardView.imageHeightConstraint?.constant = standardView.imageView.pv_heightForImageView(style: dialogImageHeightStyle)
             standardView.resetConstraints()
         }
     }
@@ -131,6 +154,6 @@ public extension PopupDialogDefaultViewController {
     
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        standardView.imageHeightConstraint?.constant = standardView.imageView.pv_heightForImageView()
+        standardView.imageHeightConstraint?.constant = standardView.imageView.pv_heightForImageView(style: dialogImageHeightStyle)
     }
 }
