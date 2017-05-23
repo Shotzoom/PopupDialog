@@ -97,7 +97,7 @@ final public class PopupDialogDefaultView: UIView {
         messageLabel.textAlignment = .center
         messageLabel.textColor = UIColor(white: 0.6, alpha: 1)
         messageLabel.font = UIFont.systemFont(ofSize: 14)
-        messageLabel.setLineHeight(lineHeight: 8)
+        messageLabel.setLineHeight(lineHeight: 7)
         return messageLabel
     }()
     

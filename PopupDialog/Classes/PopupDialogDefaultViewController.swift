@@ -91,7 +91,7 @@ public extension PopupDialogDefaultViewController {
         get { return standardView.messageLabel.text }
         set {
             standardView.messageLabel.text = newValue
-            standardView.messageLabel.setLineHeight(lineHeight: 8)
+            standardView.messageLabel.setLineHeight(lineHeight: 7)
             standardView.pv_layoutIfNeededAnimated()
             standardView.resetConstraints()
         }
