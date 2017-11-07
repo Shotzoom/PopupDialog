@@ -58,13 +58,25 @@ final public class PopupDialogDefaultView: UIView {
     /// The color of the message label
     public dynamic var messageColor: UIColor? {
         get { return messageLabel.textColor }
-        set { messageLabel.textColor = newValue}
+        set {
+            // If there is attributed text, don't overwrite the color.
+            // May need to avoid other attributes in the future.
+            if (messageLabel.attributedText?.length == 0) {
+                messageLabel.textColor = newValue
+            }
+        }
     }
 
     /// The text alignment of the message label
     public dynamic var messageTextAlignment: NSTextAlignment {
         get { return messageLabel.textAlignment }
         set { messageLabel.textAlignment = newValue }
+    }
+    
+    /// get/ set the attributed text of the message label.
+    public dynamic var messageAttributedText: NSAttributedString? {
+        get { return messageLabel.attributedText }
+        set { messageLabel.attributedText = newValue }
     }
 
     // MARK: - Views
