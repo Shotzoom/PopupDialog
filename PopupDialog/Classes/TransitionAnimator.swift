@@ -31,6 +31,7 @@ internal class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioni
 
     var to: UIViewController!
     var from: UIViewController!
+    var sourceFrame: CGRect = .zero
     let inDuration: TimeInterval
     let outDuration: TimeInterval
     let direction: AnimationDirection
@@ -56,6 +57,12 @@ internal class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioni
         case .out:
             to = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)!
             from = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!
+        }
+        
+        // solution for case when popup will present in iPad device from already presented sheet
+        sourceFrame = from.view.bounds
+        if from.presentingViewController != nil {
+            sourceFrame = from.presentingViewController!.view.bounds
         }
     }
 }

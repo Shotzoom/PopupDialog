@@ -55,7 +55,7 @@ final internal class BounceUpTransition: TransitionAnimator {
         case .in:
             to.view.bounds.origin = CGPoint(x: 0, y: -from.view.bounds.size.height)
             UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: {
-                self.to.view.bounds = self.from.view.bounds
+                self.to.view.bounds = self.sourceFrame
             }) { (completed) in
                 transitionContext.completeTransition(completed)
             }
@@ -85,7 +85,7 @@ final internal class BounceDownTransition: TransitionAnimator {
         case .in:
             to.view.bounds.origin = CGPoint(x: 0, y: from.view.bounds.size.height)
             UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: {
-                self.to.view.bounds = self.from.view.bounds
+                self.to.view.bounds = self.sourceFrame
             }) { (completed) in
                 transitionContext.completeTransition(completed)
             }
