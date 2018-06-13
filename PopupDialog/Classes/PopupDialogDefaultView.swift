@@ -31,6 +31,9 @@ final public class PopupDialogDefaultView: UIView {
 
     // MARK: - Appearance
 
+    // Custom message label class, should be nested from UILabel
+    public static var CustomMessageLabelClass = UILabel.self
+
     /// The font and size of the title label
     public dynamic var titleFont: UIFont {
         get { return titleLabel.font }
@@ -102,8 +105,8 @@ final public class PopupDialogDefaultView: UIView {
     }()
 
     /// The message label of the dialog
-    internal lazy var messageLabel: UILabel = {
-        let messageLabel = UILabel(frame: .zero)
+    public lazy var messageLabel: UILabel = {
+        let messageLabel = CustomMessageLabelClass.init(frame: .zero)
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
