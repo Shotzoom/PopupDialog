@@ -167,9 +167,9 @@ final public class PopupDialogDefaultView: UIView {
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[messageLabel]|", options: [], metrics: nil, views: views)
         
         if imageView.image != nil {
-            constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]-(==30@900)-[titleLabel]-(==30@900)-[messageLabel]-(==30@900)-|", options: [], metrics: nil, views: views)
+            constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]-(==30@900)-[titleLabel]-(==5@900)-[messageLabel]-(==30@900)-|", options: [], metrics: nil, views: views)
         } else {
-            constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[titleLabel]-(==30@900)-[messageLabel]-(==30@900)-|", options: [], metrics: nil, views: views)
+            constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[titleLabel]-(==30@900)-[messageLabel]-(==5@900)-|", options: [], metrics: nil, views: views)
             
         }
         
