@@ -67,7 +67,7 @@ final public class PopupDialog: UIViewController {
     // MARK: Public
 
     /// The content view of the popup dialog
-    public var viewController: UIViewController
+    @objc public var viewController: UIViewController
 
     /// Whether or not to shift view for keyboard display
     public var keyboardShiftsView = true
