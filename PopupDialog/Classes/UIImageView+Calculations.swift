@@ -33,7 +33,7 @@ internal extension UIImageView {
      have so the image is displayed correctly
      - returns: Height to set on the imageView
      */
-    internal func pv_heightForImageView(style: PopupDialogImageHeightStyle?) -> CGFloat {
+    func pv_heightForImageView(style: PopupDialogImageHeightStyle?) -> CGFloat {
         guard let image = image, image.size.height > 0 else {
             return 0.0
         }
